@@ -1,0 +1,1219 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Typescript</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d2111680-2f7b-4b25-ac84-b8b557b4695d" class="page serif"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Typescript%20d21116802f7b4b25ac84b8b557b4695d/typescript.png"/></div><h1 class="page-title">Typescript</h1><p class="page-description"></p></header><div class="page-body"><h2 id="8b4d2e56-7286-4fcb-90e4-dbe2b84b5bf3" class="">Typescript Nedir ?</h2><ul id="5792af2b-4a24-473a-a64d-539d7d649c46" class="bulleted-list"><li style="list-style-type:disc">TypeScript, JavaScript&#x27;in üst kümesidir. JavaScript&#x27;in sıkıntılı yanlarını önlemek için geliştirilmiştir. </li></ul><ul id="683a1c9b-1f1c-431a-b947-71b17333f80d" class="bulleted-list"><li style="list-style-type:disc">Typescript, Javascript&#x27;in üst kümesidir. <em>(super set) </em><strong>Super Set:</strong> Programlamada &quot;super set&quot;, bir veri tipinin veya bir sınıfın başka bir veri tipinin veya sınıfın tüm özelliklerini içerdiği anlamında kullanılır.</li></ul><ul id="e8c1f1f6-09aa-441e-82e4-5aa3c9681a46" class="bulleted-list"><li style="list-style-type:disc">JavaScript yorumlamalıdır ve derleme aşaması yoktur. Bu nedenle, hata tespiti yapılamaz ve hata varsa tüm kodun gözden geçirilmesi gerekir. TypeScript dönüştürücüsü, derleme (compile-time) aşamasında hata denetimi yapar ve bu soruna çözüm getirir. Javascript çalıştırma aşamasında (run-time) hataları gösterir.</li></ul><ul id="9e1bb0c2-78c8-485d-8393-e80e730617ea" class="bulleted-list"><li style="list-style-type:disc"> Typescript’in asıl çıkma amacı aslında Javascript’in sıkıntılı yanlarından bizi kurtarak büyük ölçekli uygulamalar geliştirmemizi sağlamaktır.</li></ul><ul id="645f992e-eead-409b-a6b6-7610cb8aa576" class="bulleted-list"><li style="list-style-type:disc">Typescript, Javascript&#x27;in syntax&#x27;ını kullanır buna ek olarakda Tipleri destekler.</li></ul><ul id="6d327e7f-d09a-4eb3-8a75-adc15b689582" class="bulleted-list"><li style="list-style-type:disc">TypeScript JavaScript&#x27;e gelecek olan yeni özellikleri şimdiden destekler. Bu da yeni özelliklerin tarayıcılar (ya da diğer ortamlar) tarafından tamamen desteklenmese bile kullanabileceğiniz anlamına gelir.</li></ul><figure id="5a1a710e-11a9-4987-82a2-2b5597bd3f69" class="image" style="text-align:center"><a href="Typescript%20d21116802f7b4b25ac84b8b557b4695d/68747470733a2f2f7777772e747970657363726970747475746f7269616c2e6e65742f77702d636f6e74656e742f75706c6f6164732f323032302f30352f776861742d69732d747970657363726970742d636f6d70696c65722e706e67.png"><img style="width:576px" src="Typescript%20d21116802f7b4b25ac84b8b557b4695d/68747470733a2f2f7777772e747970657363726970747475746f7269616c2e6e65742f77702d636f6e74656e742f75706c6f6164732f323032302f30352f776861742d69732d747970657363726970742d636f6d70696c65722e706e67.png"/></a><figcaption>Typescript browser ‘larda çalışmaz, Typescript ile yazılan kod Typescript Compiler ile javascript diline çevrilir (compiler) ve çalıştırılır.</figcaption></figure><h2 id="3072c61a-29da-4977-bdf3-12ecc48bf683" class="">TypeScript ve JavaScript Arasında Farklar Nelerdir?</h2><ul id="09786c56-357c-48fe-9e41-2c7d13576f82" class="bulleted-list"><li style="list-style-type:disc">JavaScript, etkileşimli web sayfaları oluşturmanıza yardımcı olan bir betik dilidir, Typescript ise JavaScript’in bir üst kümesidir.</li></ul><ul id="48bb203e-54f7-4ecb-99d0-8aea2794f306" class="bulleted-list"><li style="list-style-type:disc">TypeScript, nesne yönelimli bir programlama dilidir, JavaScript ise betik dildir.</li></ul><ul id="877d28d0-a27d-4bbc-89dd-e2b45f951f84" class="bulleted-list"><li style="list-style-type:disc">TypeScript, statik veri tipine sahip bir programlama dilidir, JavaScript ise dinamik veri tipine sahiptir. </li></ul><h2 id="554247c1-4592-411d-86da-ed284de56143" class="">Typescript ne zaman tercih edilmeli ?</h2><ol type="1" id="43766cda-31ab-49b3-8946-e8828aecc7cd" class="numbered-list" start="1"><li><strong>Büyük ve karmaşık projeler:</strong> Özellikle büyük ve karmaşık projelerde, JavaScript ile yazılan kodun yönetimi zorlaşabilir. TypeScript&#x27;in statik tür sistemine sahip olması, hataların daha erken keşfedilmesine ve daha sağlam bir kod tabanı oluşturulmasına yardımcı olabilir.</li></ol><ol type="1" id="e5875655-2c50-4d76-b0d1-7c3ee106823f" class="numbered-list" start="2"><li><strong>Ekibin büyüklüğü:</strong> Büyük ekiplerle çalışırken, herkesin yazdığı kodu anlamak ve değiştirmek zor olabilir. TypeScript, kod tabanını belgeleme ve daha anlaşılır hale getirme konusunda yardımcı olabilir.</li></ol><ol type="1" id="f45f862f-d8e3-40ab-85da-f4a2419ca882" class="numbered-list" start="3"><li><strong>Uzun ömürlü projeler:</strong> Bir projenin uzun ömürlü olması durumunda, projenin zaman içindeki değişikliklerini takip etmek ve güncellemek önemli olabilir. TypeScript, büyük bir proje üzerinde yapılan değişikliklerin sonuçlarını daha iyi anlayabilmeyi sağlar.</li></ol><ol type="1" id="bcdf4b73-40ab-41f6-ba11-a35e875f1fc0" class="numbered-list" start="4"><li><strong>Daha fazla güvenlik ihtiyacı:</strong> Özellikle güvenlik açısından hassas uygulamalar veya kritik işlevlere sahip projelerde, TypeScript&#x27;in statik tür sistemi, hataların erken aşamalarda tespit edilmesine yardımcı olabilir.</li></ol><ol type="1" id="6b5d509d-07b1-4389-a445-924ecb3dad4c" class="numbered-list" start="5"><li><strong>Kütüphaneler ve framework&#x27;ler:</strong> TypeScript, bazı popüler kütüphaneler ve framework&#x27;ler tarafından doğrudan desteklenmektedir. Örneğin, Angular framework&#x27;ü TypeScript üzerine kuruludur ve React ve Vue.js gibi diğer kütüphaneler de TypeScript&#x27;i destekler.</li></ol><ol type="1" id="cd5ca467-994d-439c-b9e4-57472c2306f5" class="numbered-list" start="6"><li><strong>Entegrasyon kolaylığı:</strong> TypeScript, JavaScript kodlarına kolayca entegre edilebilir. Mevcut bir JavaScript projesinin TypeScript&#x27;e geçirilmesi zaman alsa da, TypeScript dosyalarını yavaş yavaş eklemek ve daha sonra projeyi tamamen TypeScript&#x27;e dönüştürmek mümkündür.</li></ol><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">tsconfig.json</summary><div class="indented"><p id="c18eddd1-9ac1-4244-a3ce-7062b2079f75" class=""><mark class="highlight-yellow_background"><code><strong>target</strong></code></mark>: Hedef ECMAScript sürümünü belirtir (örn. <code><strong>&quot;es5&quot;</strong></code>, <code><strong>&quot;es6&quot;</strong></code>, <code><strong>&quot;es2017&quot;</strong></code>, vb.). Derlenen çıktı, belirtilen sürümdeki JavaScript&#x27;e uygun olacaktır.</p><pre id="15703778-7dda-475e-b67d-8862f1a6ea4e" class="code"><code>&quot;target&quot;: &quot;ES6&quot;,</code></pre><p id="8664eeea-2a43-49e9-a6d8-0114af71df6d" class=""><mark class="highlight-yellow_background"><code><strong>module</strong></code></mark>: Hangi modül sisteminin kullanılacağını belirtir (örn. <code>&quot;CommonJS&quot;</code>, <code><strong>&quot;AMD&quot;</strong></code>, <code><strong>&quot;ES6&quot;</strong></code>, vb.).</p><pre id="811dd828-801b-4bbd-bc03-edbcaaa1e1db" class="code"><code>&quot;module&quot;: &quot;ES6&quot;,</code></pre><p id="685de6ef-d6e7-40ac-8793-59092cbe016d" class=""><mark class="highlight-yellow_background"><code><strong>lib</strong></code></mark>: Bu ayar, TypeScript derleyicisinin kullanılabilir kütüphane tanımlarını belirler. 
+Örneğin, <code><strong>&quot;es6&quot;</strong></code>, <code><strong>&quot;dom&quot;</strong></code>, <code><strong>&quot;esnext.asynciterable&quot;</strong></code> gibi değerlerle kütüphaneleri ekleyebilirsiniz</p><pre id="7c135d2f-4d59-494d-bbce-971e230bbaca" class="code"><code>&quot;lib&quot;: [&quot;ES6&quot;, &quot;DOM&quot;, &quot;DOM.Iterable&quot;],</code></pre><p id="987cc2f1-187f-4b85-b6a8-dc1bf9bce638" class=""><mark class="highlight-yellow_background"><code><strong>exclude</strong></code></mark>: Derleme işleminde hariç tutulacak dosya veya dizinleri belirtir. Kod yazarken hata göstermeye devam eder fakat npm run build (derleme) yaparken hataları görmezden gelir, diğer türlü build alırken hata varsa build işlemi gerçekleşmez.</p><pre id="d5e9e1e8-15d2-48c3-9ef6-e1dfb30e15f1" class="code"><code>&quot;exclude&quot;: [&quot;src/kira.tsx&quot;],</code></pre><p id="b099e1e5-d44d-4f3d-8c27-d8d56fdde2d4" class=""><mark class="highlight-yellow_background"><code><strong>include</strong></code></mark>: Derleme işleminde dahil edilecek dosya veya dizinleri belirtir. Genellikle <code><strong>*/*</strong></code> kullanarak tüm dosyaları ve alt dizinleri dahil edebilirsiniz.</p><pre id="f675aaf1-b776-4257-ae5d-3e63144c661b" class="code"><code>&quot;include&quot;: [&quot;src&quot;],</code></pre><p id="1cfb61eb-4b41-43df-beb9-2df2d8dbb26d" class=""><mark class="highlight-yellow_background"><code><strong>skipLibCheck</strong></code></mark><strong> </strong>Bu ayar, kütüphane tanımlarını (<code><strong>.d.ts</strong></code> dosyalarını) denetleyip denetlemeyeceğini belirler. Büyük ve karmaşık bir proje çalışıyorsanız veya dışarıdan alınan kütüphaneleri kullanıyorsanız, bu denetimlerin derleme sürecini yavaşlatabileceği ve gereksiz hataların oluşabileceği durumlar olabilir.</p><pre id="76b9798a-e92e-4368-ad35-bbe4ddef8de7" class="code"><code>&quot;skipLibCheck&quot;: true</code></pre><p id="a74cc497-101e-4094-bc0a-307b210b7c80" class=""><mark class="highlight-yellow_background"><code><strong>strict</strong></code></mark> : Katı tür denetimlerini etkinleştirir. Kodun hatasız ve güvenli olmasını sağlar.</p><pre id="c1131dbd-84c5-4d97-a23a-03f970320561" class="code"><code>&quot;strict&quot;: true,</code></pre><p id="58c82d86-3f01-4066-8ed8-2e4d22e347c3" class=""><mark class="highlight-yellow_background"><code><strong>noImplicitAny</strong></code></mark> : Değişken veya fonksiyon dönüş değeri türleri belirtilmediğinde (<code><strong>any</strong></code> olarak varsayıldığında) hata oluşturur (<code><strong>true</strong></code>)</p><pre id="2795a72f-918f-4a99-8906-d2e9459550b8" class="code"><code>&quot;noImplicitAny&quot;: true</code></pre><p id="5d87a0fb-d36b-4e54-96a0-6637e30a4614" class=""><code><mark class="highlight-yellow_background"><strong>strictNullChecks</strong></mark></code> : Sadece null ve undefied atamalarını uygun değişkenlere atayabilmeye izin verir. Tip uyumsuzluğundan kaynaklanabilecek olası hataları önlemek içindir. Örneğin, bir değişkenin türü <code><strong>number</strong></code> olabilirken, bu değişkene <code><strong>null</strong></code> veya <code><strong>undefined</strong></code> atamakta bir sorun olmaz.</p><pre id="2dc9a851-8c37-44dc-bd5e-4132cf095806" class="code"><code>&quot;strictNullChecks&quot;: true</code></pre><p id="92d3fe7e-f7f1-4633-9e84-4c95b9ed8489" class=""><mark class="highlight-yellow_background"><code><strong>sourceMap</strong></code></mark>: Kaynak haritalarının oluşturulmasını (<code><strong>true</strong></code>) veya oluşturulmamasını (<code><strong>false</strong></code>) belirtir. Kaynak haritaları hata ayıklamayı kolaylaştırır.</p><pre id="44094344-72ca-430a-bc59-9b2c6508b9e0" class="code"><code>&quot;sourceMap&quot; : true</code></pre><p id="b3d462f5-6a97-4147-9114-bb35971e9f8f" class=""><mark class="highlight-yellow_background"><code><strong>outDir</strong></code></mark>: Derlenmiş çıktının nereye konulacağını belirtir.</p><pre id="2727981f-de5e-4f6c-ae39-8f1f12b108f3" class="code"><code>&quot;outDir&quot;: &quot;./dist&quot;</code></pre><p id="25f7258b-5b4a-4ae6-9459-91014a139d85" class=""><mark class="highlight-yellow_background"><code><strong>extends</strong></code></mark> Yapılandırma dosyalarını bölümlere ayırabilir ve birbirinden miras (extends) almasını sağlayabilirsiniz.</p><p id="5464e7e3-eb17-4cae-890e-73ff83c99629" class="">Temel yapılandırma dosyası: <code><strong>tsconfig.base.json</strong></code></p><pre id="3cf739ac-d10d-4148-90b7-22a8ed68e283" class="code code-wrap"><code>
+{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;es6&quot;,
+    &quot;module&quot;: &quot;commonjs&quot;,
+    &quot;strict&quot;: true}
+}</code></pre><p id="0dd1699c-1a58-496b-86fa-a1edf9914c97" class="">Diğer dosya: <code><strong>tsconfig.app.json</strong></code></p><pre id="0bff618d-926f-45fa-8b9c-7ad2e9d29d65" class="code code-wrap"><code>
+{
+  &quot;extends&quot;: &quot;./tsconfig.base.json&quot;,
+  &quot;compilerOptions&quot;: {
+    &quot;outDir&quot;: &quot;./dist&quot;
+  },
+  &quot;include&quot;: [&quot;src&quot;]
+}
+</code></pre><p id="7986f1bb-113c-4374-a044-8102c2c95194" class=""><code><strong><mark class="highlight-yellow_background">files</mark></strong></code> : Derleme işlemi sırasında dahil edilecek dosyaları belirler. Bu, projenizin yalnızca belirli dosyaların derlenmesini istediğiniz durumlarda kullanışlı olabilir.</p><pre id="a1f0cddc-cc30-4073-8f06-7a5766d071cc" class="code"><code>&quot;files&quot;: [
+    &quot;app.tsx&quot;,
+    &quot;helpers/utility.tsx&quot;
+  ]</code></pre><p id="c3b75f91-5d85-4ca4-ab58-01e7a90d26c5" class=""><mark class="highlight-yellow_background"><code><strong>compilerOptions.paths </strong></code></mark>: Modül yollarını kısaltmak ve modül tanımlarının yerini belirli kısaltmalara göre eşleştirmek için kullanılır. baseUrl ile birlikte kullanılır.</p><pre id="1a11276f-c66a-47b2-bb3c-fbff4d22597f" class="code"><code>&quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;es6&quot;,
+    &quot;module&quot;: &quot;commonjs&quot;,
+    &quot;baseUrl&quot;: &quot;./src&quot;,
+    &quot;paths&quot;: {
+      &quot;@utils/*&quot;: [&quot;utils/*&quot;],
+      &quot;@models/*&quot;: [&quot;app/models/*&quot;]
+ }</code></pre><pre id="9af2e42c-3420-4e7f-be66-5ac00df50226" class="code"><code>import { add } from &quot;@utils/math&quot;;
+import { User } from &quot;@models/user&quot;;</code></pre><p id="0e24a976-37ce-4d14-920d-886c6072fd28" class=""><mark class="highlight-yellow_background"><code><strong>allowJs</strong></code></mark> :TypeScript derleyicisine JavaScript dosyalarını (<code><strong>*.js</strong></code> uzantılı dosyaları) derleme işlemine dahil etme izni verir. Default false ‘dir. Özellikle mevcut bir projeyi TypeScript&#x27;e geçirirken veya TypeScript ve JavaScript dosyalarını aynı proje içinde kullanırken faydalı olabilir.</p><pre id="da2a8408-e696-4608-a542-bf5d86b865bb" class="code"><code>&quot;allowJs&quot;: false //dahil etmez /dafault)</code></pre><p id="857c6a38-d24f-44b5-b198-1b16d75a4c7a" class=""><mark class="highlight-yellow_background"><code><strong>checkJs</strong></code></mark> : JavaScript dosyalarında (<code><strong>.js</strong></code> uzantılı dosyalarında) tür denetimi yapma izni verir. Derleme işlemi sırasında tür denetimini kontrol eder. allowJs ise dosyayı derleme işlemini dahil edip etmemeyi sağlar.</p><pre id="f50c8902-f0ab-4a3e-813c-cc61ebdd92fe" class="code"><code>&quot;checkJs&quot;: false //kontrol etmez (default)</code></pre><p id="9985ef81-bbd3-42d4-9f17-9e6e13b886ea" class=""><mark class="highlight-yellow_background"><code><strong>noEmit</strong></code></mark> : Derleme sırasında çıktı dosyalarının üretilip üretilmeyeceğini kontrol eder. Yalnızca tür denetimi yapmak ve derleme sürecinde yalnızca hataları kontrol etmek istediğinizde ve çıktı dosyasına (yani derlenen .js dosyasına) ihtiyaç duymadığınızda kullanışlıdır.&quot;noEmit&quot;: true</p><pre id="70763fba-bbec-49d3-9d1f-804827640ae7" class="code"><code>&quot;noEmit&quot;: false //çıktı üretir (default)</code></pre><p id="054e5106-af8d-4fde-aa04-83f212cfa880" class=""><mark class="highlight-yellow_background"><code><strong>noUnusedLocals</strong></code></mark><strong> :</strong> Kullanılmayan değişkenleri kontrol eder ve hata döndürür.</p><pre id="7cb80460-4dee-4d39-9b9e-f0ff44f8ec6b" class="code"><code>noUnusedLocals : true //control et ve uyar</code></pre><p id="8a4349cf-1bd7-4235-b905-1d59d71703fc" class=""><mark class="highlight-yellow_background"><code><strong>noUnusedParameters</strong></code></mark><strong> :</strong> Kullanılmayan fonksiyona gönderilen parametreleri kontrol eder.</p><pre id="a040c7d4-6bfc-4175-876d-18446e4b9574" class="code"><code>noUnusedParameters : true //control et ve uyar</code></pre><p id="8d3243da-0e66-4e7c-9d7b-9878287a308e" class=""><mark class="highlight-yellow_background"><strong><code>allowImportingTsExtensions</code></strong></mark><strong> :</strong> Diğer .ts veya .tsx dosyalarını import edebilme izni verir. Genelde componentleri birbirleri arasında sürekli import ettiğimiz için bu ayarı hep true tutmalıyız. Default false.</p><pre id="ab07a82d-0441-4175-a29b-7d24ac2a232e" class="code"><code>allowImportingTsExtensions : true //dosyaları import edebilirsin.</code></pre><p id="1f43799e-7d9d-4f09-ae76-c6442e36bff8" class=""><mark class="highlight-yellow_background"><code><strong>resolveJsonModule</strong></code></mark><strong> :</strong> Diğer .json dosyalarını import edebilme izni verir. Default false.</p><pre id="d2fe74c2-9730-495b-a30f-f5ffa5efa606" class="code"><code>resolveJsonModule : true //dosyaları import edebilirsin.</code></pre><p id="3c8c45cb-fbd4-4f36-8c4b-ce093dd244a6" class=""><mark class="highlight-yellow_background"><code><strong>isolatedModules</strong></code></mark><strong> :</strong> Tüm .ts veya .tsx dosyaları nasıl parça parça ise o şekilde derlenip çıktı olarak .js dosyalarına dönüştürülür. Default false ‘dir yani componentlerinizi ayırsanız bile tek bir dosyada derler ve çıkarır.</p><pre id="48dbc4cc-d7e8-496b-acd6-7e13118e2f8c" class="code"><code>isolatedModules : true //her component kendi adında dosya ile çıkarılır.</code></pre><p id="a38614e7-3ae2-4009-834a-e02f8b3bffdc" class="">
+</p></div></details><h3 id="4685bf37-23bc-45e7-9874-1c0d55cf9fd4" class="">Typescript klasör yapısı</h3><p id="3b9aca8e-e040-4175-8a34-d351597bf889" class="">Projelerde tip dosyaları oluştururken genellikle dosya ismine “d” ifadesi koyulur. Kalıplaşmış kullanımdır.</p><pre id="4f9f3bb6-8f53-4fd0-990e-ff091e5fd33d" class="code"><code>index.ts //Dosyaları dışarıya çıkarma ve erişim işlemleri.
+Person.tsx //Componentin içeriği
+person.d.ts //declaration tip dosyası (içerisinde type ve interface kavramları bulunur)
+constants.ts //Asla değişmeyecek bazı belirlenmiş değerlerin olduğunu dosya.</code></pre><h3 id="3a8b1776-480b-461b-be63-69c001dfee6a" class="">Object</h3><pre id="a95595b8-a836-4e00-b613-eec0d7dbb966" class="code"><code>const person: {
+        ad: string,
+        yas: number,
+        sehir: any,
+        tarih: Date,
+        check: boolean,
+				dersNotlari: {},
+        func: Function
+    } = {
+        ad: &quot;Kaira&quot;,
+        yas: 20,
+        sehir: &quot;Ankara&quot;,
+        tarih: new Date(),
+        check: true,
+				dersNotlari: {matematik: 25, turkce: 74},
+        func: () =&gt; {
+            return 5
+        }   
+    }</code></pre><h3 id="b05010ab-e1fb-4c13-94e9-c492b236fed9" class="">Array[]</h3><pre id="3a9bb4cd-14b2-4f2b-8c90-b704b086c21b" class="code"><code>//Sadece string tipinde değer alabilir
+const person: string[] = [&quot;Hellow&quot;, &quot;World&quot;];
+
+//Sadece string veya number tipinde değer alabilir.
+const person: (string | number)[] = [&quot;Hellow&quot;, &quot;World&quot;,25];</code></pre><h3 id="6e50dd4d-b233-401f-af4a-616863280fa2" class="">type</h3><pre id="666f925b-ec52-4a4b-92b9-8f56d30637a3" class="code"><code>type persontype = string | number[];
+const person: persontype = &quot;kaira&quot;
+const person: persontype = [12,44,28]</code></pre><pre id="9c839bcf-4b82-4fdf-8927-3554165b6ef4" class="code"><code>type persontype = any[];
+const person: persontype = [&quot;john&quot;, {name: &quot;kaira&quot;}, [44, 44], () =&gt; console.log(&quot;okey&quot;)]</code></pre><pre id="b362baab-b75d-4a68-bea2-5a707226ca80" class="code"><code>type Cat = number;
+
+type Dog = Cat;
+let person: Dog = 2;</code></pre><pre id="26dde1ff-37b2-42c6-80e4-3262346980ae" class="code"><code>type Dog = string;
+type Cat = number;
+let person: Dog | Cat = 2;</code></pre><pre id="8b03c0b8-4129-4b35-becc-695b93f9f187" class="code"><code>type Dog = string;
+type Cat = number;
+
+type DogCat = Dog | Cat
+let person: DogCat = 2;
+let person: DogCat = &#x27;John&#x27;;
+</code></pre><pre id="de18a55e-b0bd-4c5f-87ab-e5049f0f587c" class="code"><code>type IPerson = () =&gt; number
+
+const Person: IPerson = () =&gt; {
+		return 25
+}
+
+type IPerson = (isim: string, yas: number) =&gt; number
+
+const Person: IPerson = (isim,yas) =&gt; {
+		return yas;
+}</code></pre><h3 id="58f95614-0fb6-4a80-aad3-f30da6f9a989" class="">interface</h3><pre id="3c8e5929-abc5-4824-9885-c2e96c63ac0c" class="code"><code>interface PersonTypes {
+        ad: string,
+        yas: number,
+        sehir: any,
+        tarih: Date,
+        check: boolean,
+        func: Function,
+        dersNotlari: {}
+    }
+
+const person: PersonTypes = {
+        ad: &quot;Kaira&quot;,
+        yas: 20,
+        sehir: &quot;Ankara&quot;,
+        tarih: new Date(),
+        check: true,
+        func: () =&gt; {
+            return 5
+        },
+        dersNotlari: {matematik: 25, turkce: 74}
+    }</code></pre><pre id="411f77e6-5980-423c-92e9-491224651947" class="code"><code>interface Dog {
+	name: string
+	age: number
+}
+interface Cat {
+	name: string,
+	gender: &#x27;male&#x27; | &#x27;female&#x27;
+}
+// &amp; operatöründe 2 interface &#x27;de olan değerlerin tümünü kullanmak zorundayız
+type DogCat = Dog &amp; Cat;
+let person: DogCat = {name: &#x27;Karabaş&#x27;, age: 4, gender: &#x27;male&#x27;};</code></pre><pre id="f393f47c-abee-44a8-9453-82382956a71f" class="code"><code>// person fonksiyonun geri dönüş değeri IPerson interfacenin isim adlı değeri 
+// ile aynı yani string döndürecek.
+interface IPerson {
+  isim: string;
+  yas: number;
+}
+
+const person = (): IPerson[&#x27;isim&#x27;] =&gt; {
+  return &#x27;Kaira
+}</code></pre><pre id="24ad4c14-a979-473e-9a70-d83cce991e3c" class="code"><code>// Array &#x27;lar için index değerlerini number ve key değerlerini string belirledik.
+// indexler person[0] , person[1] şeklinde düşünülebilir. artık bu array içerisine
+// sadece string değerler kabul edecektir.
+interface IPerson {
+  [index: number]: string
+}
+
+const person: IPerson = [&#x27;Kaira&#x27;, &#x27;katarina&#x27;]</code></pre><pre id="433e8044-d53b-49a9-a40b-e32e8eb10e85" class="code"><code>interface IPerson {
+	(): void
+}
+
+const person: IPerson = () =&gt; {
+	console.log(&#x27;Hellow&#x27;);
+}
+
+interface IPerson {
+	(a: number, b: number): number
+}
+
+const person: IPerson = (a,b) =&gt; {
+	return a + b
+}
+</code></pre><pre id="092d0bd8-b5d9-4bde-950b-caa8edb9dda8" class="code"><code>//Extends
+
+interface IUser{
+	no: number,
+	isim: string
+}
+
+interface IPerson extends IUser{
+	yas: number,
+	sehir: string
+}
+
+const person1: IPerson = {
+	no: 1,
+	isim: &#x27;Kaira&#x27;,
+	yas: 19,
+	sehir: &#x27;London&#x27;
+}</code></pre><h3 id="09ddb450-bfa4-45eb-a6db-56d2dcb67ade" class="">as</h3><pre id="7cb5a778-45cd-4420-8fe7-3e145d277aef" class="code"><code>const person: string = &quot;Kaira&quot;;
+const person = &quot;Kaira&quot; as string;</code></pre><p id="f850e913-0006-4bdd-891d-193e60974274" class="">Tür güvenliğini korumak için tür dönüşümlerini ve <code><strong>as</strong></code> anahtar kelimesini olabildiğince az kullanmanızı, mümkünse tür çıkarımına dayalı bir yaklaşım benimsenmeli. (type, interface)</p><pre id="23ded26b-c7fd-4af4-ba30-a49384999f75" class="code"><code>type persontype = number[];
+
+const person = [12, 24, &quot;john&quot;] as persontype // hatalı olduğu halde hata vermez.
+
+const person: persontype = [12, 24, &quot;john&quot;]; // hatalı olduğunu belirtir, sağlıklıdır.</code></pre><h3 id="09b98446-0d78-49f1-accf-7862ecc74114" class="">Sabit değerler</h3><pre id="1132726c-f71b-4706-b631-74fa3d42aece" class="code"><code>const sayilar: 25 | 12 | &quot;John&quot; = 12;
+
+type persontype = 25 | 12 | &quot;John&quot;
+const person: persontype = 12;</code></pre><pre id="2af6942f-4f4d-4dbf-a54f-c2bc569c0e20" class="code"><code>type  PersonType = [string, string, number];
+const person: PersonType = [&quot;Kaira&quot;, &quot;Katarina&quot;, 24]</code></pre><pre id="282278e7-4a5a-45af-8017-6a0e98019cde" class="code"><code>type  PersonType = [string, 25 | 24 | string[], number];
+const person: PersonType = [&quot;Kaira&quot;, 12, 24] // error
+const person: PersonType = [&quot;Kaira&quot;, 24, 24] // true
+const person: PersonType = [&quot;Kaira&quot;, [&quot;tt&quot;, &quot;bb&quot;], 24] // true
+const person: PersonType = [&quot;Kaira&quot;, [&quot;tt&quot;, &quot;bb&quot;, 12], 24] // true</code></pre><h3 id="3fc5392d-b8cb-4d9e-a2c9-c6adeb26234f" class="">Fonksiyonlar</h3><pre id="4aa96580-d5de-4975-863a-63b22fe86053" class="code"><code>// Geriye bir değer döndürmüyor ise tipi void
+const func = () =&gt; { }
+// Aynı şekilde void tipi
+const func = () =&gt; { console.log(&quot;Hello&quot;); }
+// Bu fonksiyon geriye bir değer döndürdüğü için tipi otomatik number olur.
+const func = () =&gt; { return 25; }</code></pre><pre id="5181e954-47fb-4c76-b1cf-0dae998c17d4" class="code"><code>// geriye bir değer döndürmeyeceğini belirtiyorum
+function func(): void {
+   console.log(&quot;Hello&quot;)
+}
+
+const func = () : void =&gt; {
+   console.log(&quot;Hello&quot;)
+}</code></pre><pre id="193e13a4-3f32-4b1f-8bf8-4ce4935a2eae" class="code"><code>const func = (): number =&gt; {
+	return 25
+}
+
+// geriye number döndürür veya hiçbir değer döndürmeyebilir
+const func = (): void | number =&gt; {
+	return 25
+}
+
+const func = ():(string | number)[] =&gt; {
+	return [25,12,44,&quot;John&quot;]
+}
+
+function func(): [string, string, number] {
+  return [&quot;Kaira&quot;, &quot;Katarina&quot;, 25];
+}</code></pre><pre id="cf2a217d-711f-418e-8d4e-70e4f2d66408" class="code"><code>function func(): number {
+  return 25;
+}
+
+let test: string = func() // error string bir değere number değer atayamazsın.</code></pre><h3 id="4a9ee27c-3d7e-417f-9c61-656afa0527ad" class="">Parametreler</h3><pre id="dfaa460c-9d23-4ad6-b818-f243e7a2c05a" class="code"><code>function func(text: string, repeat: number): void {
+  for (let i = 1; i &lt;= repeat; i++) {
+    console.log(text);
+  }
+}
+func(&quot;Hello Wrold&quot;, 4);</code></pre><p id="0f986cc0-f49e-44f4-a008-688bc290f08f" class="">Aşağıdaki kodda 2 hata mevcut. İlki text parametresi aldığımız halde bunu kullanmamamız, ikinci olarak geri dönüş tipini number olarak belirttik fakat return metodu for döngüsü içerisinde yer aldığı için yani ana parantezin içerisinde return değeri olmadığı için geriye bir şey döndürmeme ihtimaline karşı typescript number tipine ek olarak undefined tipinide eklememizi istiyor.</p><pre id="505f4990-f547-4cc2-942b-d07f31cc37d2" class="code"><code>function func(text: string, repeat: number): number {
+  for (let i = 1; i &lt;= repeat; i++) {
+    return 25; // return ifadesi döngüyü 1 kere çalıştırıp sonlandırır.
+  }
+}
+
+function func(text: string, repeat: number): number {
+  for (let i = 1; i &lt;= repeat; i++) {
+    console.log(text);
+  }
+	return 25; //artık geri dönüş tipinin number olduğunu kabul eder.
+}</code></pre><pre id="db0bcf3a-f471-4126-8971-f1cf018371b6" class="code"><code>//obje olarak paremetre almak
+function func(parameters: { text: string, repeat: number }): number {
+  const {text, repeat} = parameters;
+  for (let i = 1; i &lt;= repeat; i++) {
+    console.log(text);
+  }
+  return 25;
+}</code></pre><h3 id="a16dd181-71a9-45c3-bf5a-530c5b3b0c52" class="">Opsiyonel parametreler</h3><p id="15c00b93-16ac-474c-8fcb-001a4b9b8ea4" class="">Opsiyonel parametreler, bir işlevin çağrıldığında isteğe bağlı parametreleri ifade etmek için kullanılır.</p><pre id="1cb4c504-dbab-4cba-b92c-84dca259bce7" class="code"><code>	const func = (text : string, sayi?: number) =&gt; {
+	console.log(text)
+}
+
+func(&quot;Hellow&quot;); //sayi opsiyonel olduğu için belirtmesek &#x27;de hata vermez.</code></pre><h3 id="8c143917-49b3-4564-a653-92dbdd55430e" class="">Normal fonksiyon ve arrow fonksiyon tiplendirme farkı</h3><p id="629ea681-ed17-4ef7-996c-a639840cd5d2" class="">Normal fonksiyonları type ile tiplendiremeyiz çünkü type ‘da fonksiyon tipi tanımlarken arrow function tipinde tanımlıyoruz ve bunu normal fonksiyon kabul etmez. <code>=&gt; string</code></p><pre id="952b19c2-826d-4643-9786-37e5cc22251f" class="code"><code>type IPerson = (isim: string) =&gt; string
+
+function Person(isim): IPerson{
+	return isim;
+}</code></pre><p id="b656f03f-5643-4247-9b5b-dd1ef0bbfd5b" class="">Bunun çok sağlıklı olmayan bir çözümü vardır, bir fonksiyon tanımlarız ve bu fonksiyon da geriye yeni bir fonksiyon döndürür, en dıştaki fonksiyon parametre almaz, geriye döndürdüğü fonksiyon parametre alır. Typescript ilgili tanımlamaları otomatik yapar. Çağırırken fonksiyonun içerisindeki fonksiyona parametre veririz. <code>FunctionName()(’parametre’)</code></p><pre id="37077b33-edc7-4405-885e-f5754ed7b579" class="code"><code>type IPerson = (isim: string) =&gt; string
+
+function Person(): IPerson{
+
+	return function(isim){
+		return isim;
+	}
+
+}
+
+Person()(&#x27;Kaira&#x27;)</code></pre><p id="de62a80f-b897-40c1-981e-e04428b6176b" class="">Bu şekilde kullanmak zahmetli ve sağlıklı değildir bunun için <code>interface</code>  çözümdür.</p><h3 id="c0018cc8-337f-45c3-ab91-19d8f014963c" class="">Partial (Obsiyonel Obje)</h3><p id="889ecd6d-b411-4946-8311-be9297fe89be" class=""><code>Partial </code>metodu tüm değerlerin obsiyonel olacağını belirtir.</p><pre id="f548e82e-e486-45d6-8e8e-7e1f96c75990" class="code"><code>// Aşağıdaki tanımlamada isim ve yas değerinin belirtilmesi zorunludur.
+interface PersonTypes {
+    isim: string;
+    yas: number;
+}
+// Partial ile tüm değerlerin obsiyonel olabileceği yeni bir tip oluşturduk.
+type OpsionelType = Partial&lt;PersonTypes&gt;;
+
+const Person: OpsionelType {
+		isim: &#x27;Kaira&#x27;
+}</code></pre><pre id="5ee56da6-af1c-4986-bd26-f88a1ccc3a78" class="code"><code>//key lerin sonuna &quot;?&quot; koyarak hangilerinin obsiyonel olabileceğini belirtilebiliriz.
+interface PersonTypes {
+    isim: string;
+    yas?: number;
+}
+
+const Person: PersonTypes {
+		isim: &#x27;Kaira&#x27;
+}</code></pre><h3 id="ad6364ac-ecdc-4d3a-aaa3-54ad01f43bed" class="">Required</h3><p id="b81ee472-3db5-4b3e-b41d-72e7af8f4195" class="">Opsiyonel olan değerlerde dahil tüm tipleri zorunlu kılar.</p><pre id="a00a0691-ed48-48b7-b3fb-e421cc1fcea1" class="code"><code>interface IPerson {
+	name?: string;
+	age?: number;
+}
+
+const person: Required&lt;Person&gt; {
+	name: &#x27;Kaira&#x27;,
+	age: 24
+}</code></pre><h3 id="fb63278e-ba25-40b2-8d7d-691bd96daf67" class="">index signature - Objeye belirtilmemiş tip deki değerleri ekleyebilmek</h3><p id="60df35f7-009d-43cd-a738-c30bc20578ad" class="">Tip olarak tanımlanmamış değerlerin obje içerisine kabul edilebilmesi için [key: string]: &lt;tip&gt; şeklinde belirtilmesi gerekiyor. Aşağıda any tipinde her değeri kabul edeceğini belirttik.</p><pre id="376f0b26-20fd-4947-9d80-59d94640f32b" class="code"><code>interface PersonTypes {
+    isim: string;
+    yas: number;
+
+		[key: string]: any;
+}
+
+const Person: OpsionelType {
+		isim: &#x27;Kaira&#x27;
+		yas: 25
+		sehir: &quot;İstanbul&quot;
+		ilce: &quot;Bebek&quot;
+}</code></pre><p id="ad4c5cd7-385d-4c8c-9999-f854d4229101" class="">Ek olarak diğer tiplerde değer de kabul edebileceğini belirtebiliriz fakat <code><strong>önemli :</strong></code> any haricinde tip belirtirken kullanılan diğer tipleride belirtmek zorundayız. Aşağıda boolean bir değer alabileceğini belirttik fakat isim ve yas ‘ın tipinide yanına eklemek zorundayız.</p><pre id="25e7c133-385c-4809-9f95-d01f7ede23e8" class="code"><code>interface PersonTypes {
+    isim: string;
+    yas: number;
+
+		[key: string]: string | number | boolean;
+}
+
+const Person: OpsionelType {
+		isim: &#x27;Kaira&#x27;
+		yas: 25
+		durum: true
+}</code></pre><h3 id="232b8453-f017-4e3f-a81d-69a580fc7b98" class="">Record</h3><p id="e130b007-d681-46b7-8e1d-4f3969bc3725" class="">Objelerde key ve value şeklinde tip atamaları yapmamızı sağlar. <code>Record&lt;key , value&gt;</code>
+Herhangi bir özel key ve value belirtmeden sadece tip atamsı yaparak opsiyonel değerler üretebiliriz.</p><pre id="cdff1bd3-01c0-4f8f-9fcb-77509fecff94" class="code"><code>const person: Record&lt;string,number&gt; = {
+	yas: 25,
+	sınıf: 3
+}
+
+const person: Record&lt;string, boolean | number&gt; = {
+	yas: 25,
+	check: true
+}
+
+const person: Record&lt;string, {isim: string, yas?: number, check: boolean}&gt; = {
+	person1: {
+		isim: &#x27;kaira&#x27;,
+		yas: 19,
+		check: true
+	},
+	person2: {
+		isim: &#x27;katarina&#x27;,
+		check: false
+	},
+}</code></pre><h3 id="8ac1f603-66e7-49a1-9e00-618580c9aad5" class="">Omit</h3><p id="5ef957d8-86b1-42e7-9c95-30fb735a59ee" class="">Belirli bir interfacede kullanmak istemediğimiz tip tanımlamalarını çıkararak geriye bir interface döndürür. <code>Omit&lt;interfaceName, disableTypeName&gt;</code></p><pre id="18960ef1-4d0a-4356-bdeb-872466548fe0" class="code"><code>interface IPerson{
+	name: string;
+	age: number;
+	date: Date;
+}
+
+const person : Omit&lt;IPerson, &#x27;date&#x27;&gt; = {
+	name: &#x27;John&#x27;,
+	age: 21
+}</code></pre><h3 id="2f651b52-5a31-4afb-bb32-5a181c402240" class="">Pick</h3><p id="4f394479-3762-4d88-b15f-cd806fc0abf4" class="">Omit in tersi olarak başka bir interface ‘de ki seçili tip veya tiplerin kullanılmasını ister.
+<code>Omit&lt;interfaceName, enabledTypeName&gt;</code></p><pre id="bda59cfd-b8e6-4d5f-a12c-4db410d33a38" class="code"><code>interface IPerson {
+  name: string;
+  age: number;
+  date: Date;
+}
+
+const person: Pick&lt;IPerson, &#x27;name&#x27; | &#x27;age&#x27;&gt; = {
+  name: &#x27;John&#x27;,
+  age: 21,
+}</code></pre><h3 id="27ff1b53-6779-499b-b00e-de8ecb56b694" class="">Parameters</h3><p id="76905bd3-2da7-47a2-a8bc-c9d7c7b4e464" class="">Belirli bir fonksiyonun tipini kopyalamamızı sağlar. Örneğin bir kütüphanede veya sizin başka bir yerde kullandığınız bir fonksiyon var, bu tip export edilmemiş veya nerede olduğunu bulamıyoruz. O zaman Parameters ile o fonksiyonun parametre tiplerini kopyalayabiliriz. 
+<code>Parameters&lt;typeof fonksiyonName&gt;</code></p><pre id="a2e6622a-e98d-451f-9f6f-80406ca09983" class="code"><code>const person = (isim: string, age: number) =&gt; {
+	console.log(&quot;Hello&quot;);
+}
+
+type copytype = Parameters&lt;typeof person&gt;;
+
+const person2: copytype = [&#x27;Kaira&#x27;,24]</code></pre><pre id="ad1d6130-7a8c-4048-9742-c879546f2649" class="code"><code>//başka bir fonksiyona parametre olarak gönderme
+const person = (isim: string, age: number) =&gt; {
+	console.log(&quot;Hello&quot;);
+}
+
+type copytype = Parameters&lt;typeof person&gt;;
+
+const person2 = (parameters: copytype) =&gt; {
+	console.log(&quot;Hello&quot;);
+}
+
+person2([&#x27;kaira&#x27;,24])</code></pre><h3 id="f7937d5b-bad7-444e-a9ba-2aacb5c5604c" class="">ReturnType</h3><p id="34bf92c5-5f80-4c53-a571-726d89b4606f" class="">Bir fonksiyonun geriye döndürdüğü tipi almamızı sağlar. <code>ReturnType&lt;typeof functionName&gt;</code></p><pre id="a17c8ab0-4323-4b23-9018-b873d54fe019" class="code"><code>const myFunc = () =&gt; {
+	return 25
+}
+
+const myFunc2 = () : ReturnType&lt;typeof myFunc&gt; =&gt; {
+	return 12
+}
+
+// yeni bir tip oluşuturup kullanabiliriz.
+type returnCopy = ReturnType&lt;typeof myFunc&gt;;
+
+const myFunc2 = () : returnCopy  =&gt; {
+	return 12
+}
+
+// bir nesneye atayabiliriz.
+const person: returnCopy = 18; </code></pre><h3 id="5e6dbdda-e3d8-445e-ba71-247e63ddf1ae" class="">enum</h3><p id="b8fcf086-2bbe-4f0e-ae95-966bd96509b9" class="">Sabit değerlere belirli açıklamalar ekleyerek kullanmamızı sağlar. Sabit değerlerin anlamlarını daha anlaşılır hale getirmek ve hatalı kullanımları engellemek için kullanışlıdır.
+İnfo : Enum&#x27;lar JavaScript&#x27;te derlenirken nesne olarak temsil edilir, bu nedenle aşırı kullanımları performans sorunlarına yol açabilir. Büyük enumlar kullanırken dikkatli olunması önemlidir.</p><pre id="cea37461-5172-4289-a671-33d135aebb6f" class="code"><code>// bir enum tanımlıyoruz ve ilk değere 1 atıyoruz ve enum otomatik olarak sıraası ile
+// sonraki değerleri 2,3,4,5... şeklinde artarak değer atıyor.
+enum ENUMdaily {
+  Monday = 1,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday
+}
+
+// Bir fonksiyon tanımladık ve parametre olarak enum &#x27;daki yani 1,2,3,4,5... değerleri
+// alabileceğini söyledik.
+  function getDayTR(day: ENUMdaily) {
+    switch (day) {
+      case ENUMdaily.Monday:
+        return &quot;Pazartesi&quot;;
+      case ENUMdaily.Tuesday:
+        return &quot;Salı&quot;;
+      case ENUMdaily.Wednesday:
+        return &quot;Çarşamba&quot;;
+      case ENUMdaily.Thursday:
+        return &quot;Perşembe&quot;;
+      case ENUMdaily.Friday:
+        return &quot;Cuma&quot;;
+      case ENUMdaily.Saturday:
+        return &quot;Cumartesi&quot;;
+      case ENUMdaily.Sunday:
+        return &quot;Pazar&quot;;
+    }
+  }
+// getDay() methodu bize o anki günün değerini Pazartesi ise 1 Salı ise 2.. şeklinde verir
+console.log(getDayTR(new Date().getDay()))  //return &quot;Pazartesi&quot;
+
+ENUMdaily.Monday = &quot;yeni bir değer&quot; // ENUMdaily sadece okunabilir, değiştirilemez.
+
+// Burada yapmaya çalıştığımız olay. belirli enumlar tanımlayarak bunları farklı yerlerde
+// daha anlaşılır halde kullanabilmek. Örneğin artı ENUMdaily.Monday değerini
+// çağırdığımızda karşılığının 1 olacakğını biliyoruz. case 1 mi demek yerine
+// case ENUMdaily.Monday ise Pazartesi olacağını anlayabiliriz.</code></pre><pre id="f00403f0-af48-4a51-8d5e-0517fd898e88" class="code"><code>enum YemekKategorileri {
+    Corba = &quot;Çorba&quot;,
+    AnaYemek = &quot;Ana Yemek&quot;,
+    Salata = &quot;Salata&quot;,
+    Tatli = &quot;Tatlı&quot;
+  }
+
+  enum Yemekler {
+    MercimekCorbasi = &quot;Mercimek Çorbası&quot;,
+    KuzuKebap = &quot;Kuzu Kebap&quot;,
+    SezarSalata = &quot;Sezar Salata&quot;,
+    Baklava = &quot;Baklava&quot;
+  }
+
+  function getKategori(secilenYemek: Yemekler) {
+    return secilenYemek === Yemekler.MercimekCorbasi ?
+      YemekKategorileri.Corba : secilenYemek === Yemekler.SezarSalata ?
+        YemekKategorileri.Salata : secilenYemek === Yemekler.Baklava ?
+          YemekKategorileri.Tatli : YemekKategorileri.AnaYemek;
+  }
+
+console.log(getKategori(Yemekler.Baklava)); // return &quot;Tatlı&quot;
+console.log(getKategori(Yemekler.KuzuKebap)); // return &quot;Ana Yemek&quot;</code></pre><h3 id="701d5eeb-1ed7-4e4e-8ddf-514f7f4d086c" class="">Tip parametreleri (Generics)</h3><p id="aa95b360-8a64-46c9-be4c-ff52fd923177" class=""><code><strong>&lt;T&gt;</strong></code> ifadesindeki <code><strong>T</strong></code>, genel tür parametresini temsil eder. <code><strong>T</strong></code>&#x27;yi istediğiniz herhangi bir harfle veya kelimeyle değiştirebilirsiniz, ancak genellikle <code><strong>T</strong></code> tercih edilir, çünkü &quot;Type&quot; (Tür) anlamına gelir.</p><pre id="7dda2533-21d5-4dbd-bd4e-d4b6d2d81269" class="code"><code>// fonksiyonun T adında bir parametre alacağını belirtiyoruz.
+
+function example&lt;T&gt;(param: T) {
+  return param
+}
+// artık fonksiyona parametre olarak hangi değeri gönderirsek giriş ve çıkış
+// değerleri otomatik olarak bu tipe göre belirlenir.
+console.log(example(&quot;Hello&quot;)); // giriş değeri &quot;Hello&quot; return &quot;Hello&quot;
+console.log(example(24))  // giriş değeri number retrun number</code></pre><pre id="493696fb-a07a-4db3-b981-9c241605c12b" class="code"><code>function example&lt;T extends string&gt;(name: T) {
+  return name
+}
+
+example(&quot;alicabbar&quot;)
+
+function example&lt;T extends string[]&gt;(name: T) {
+  return name
+}
+
+example([&quot;alicabbar&quot;, &quot;kaira&quot;])
+
+function example&lt;T extends { name: string }[]&gt;(name: T) {
+  return name
+}
+
+example([{name: &quot;alicabbar&quot;}, {name: &quot;dasdas&quot;}])
+
+function example&lt;T extends object&gt;(name: T) {
+  return name
+}
+
+example({name: &quot;dasdas&quot;}); // obje olarak parametre alabilir
+example([{name: &quot;alicabbar&quot;}, {name: &quot;dasdas&quot;}])  // veya array içerisinde objeler alabilir</code></pre><h3 id="36e3de31-52e4-41d9-bf7f-872449eca894" class="">Tip tanımlama yöntemleri</h3><pre id="1ed60977-5747-4d6f-9a2a-a7a290e095eb" class="code"><code>interface IPerson {
+	name: string,
+	age: number
+}
+
+// Yöntem 1
+const person1 = {name: &quot;Kaira&quot;, age: 19} as IPerson
+// Yöntem 2
+const person2: IPerson = {name: &quot;Kaira&quot;, age: 19}
+// Yöntem 3
+const person1 = &lt;IPerson&gt;{name: &quot;Kaira&quot;, age: 19}
+// Yöntem 3
+const person1 = &lt;&gt;{name: &quot;Kaira&quot;, age: 19}</code></pre><p id="3342adb0-e43c-4bb7-9bc0-cb2f6f1532e6" class="">as ile tanımlama yapmak sağlıklı değildir çünkü as yöntemi aslında oluşturulan değeri ilk başta boş bir değer olarak kabul eder ve as ile tipini belirtir bu nedenle içerisini ilk başta boş değer olarak kabul ettiği için hataları vurgulamaz, özellikle obje yapılarında.</p><pre id="3c755647-6893-40c6-a37b-fe344ad1bb3a" class="code"><code>interface IPerson {
+	name: string,
+	age: number
+}
+
+// Hata verir çünkü person1 içerisine name ve age değeri girmek zorunludur.
+const person1: IPerson = {}
+
+// Hata vermez çünkü yapıyı oluşturdukttan sonra IPerson tipine çevirir.
+const person2 = {} as IPerson</code></pre><p id="2bee8472-57e7-4a56-9d01-51f6dac2d48b" class=""><strong><strong>Tuple : </strong></strong>Belirli bir sayıda öğe içeren ve her öğenin belirli bir türe sahip olduğu bir yapıları tarif etmek için kullanılır. Typescript ‘e özgü bir kavram değildir, genel programlama dillerinde elemen sayısı, sırası ve tipleri kesinleşmiş, belli olan yapılara denir.</p><pre id="c0830c96-4d86-4664-a56e-a693701717d4" class="code"><code>// tipi ve eleman sayısı belli bu yüzden bu bir tuple öğesi.
+const person1 : [string, number] = [&quot;Kaira&quot;,19]</code></pre><h3 id="fa815299-6045-4526-bc8b-3ca7d34883fd" class="">Tip doğrulama</h3><pre id="bfc94cae-dcda-4545-a4fb-f5f847d2349c" class="code"><code>const person = [&quot;qd&quot;, &quot;sad&quot;, &quot;ds&quot;, 3];
+const person2 = 4;
+const person3 = {name: &quot;ddsd&quot;}
+const person4 = Symbol()
+
+// true
+if (Array.isArray(person)) {
+  console.log(&quot;Bu bir array&quot;)
+}
+
+console.log(Array.isArray(person2)) //false
+console.log(typeof person2)  // number
+console.log(typeof person3)  // object
+console.log(typeof person4)  // symbol</code></pre><h3 id="98ffe7da-6914-49cd-a12e-90b9a20d576f" class="">Array.isArray(…)</h3><p id="9f4b1184-d475-4ce8-89ee-0d371fbb7e4c" class="">Gönderilen parametrenin array olup olmadığını kontrol eder. <code>typeof &lt;değişken adı&gt;</code> şeklinde tanımlamalarda eğer bir array değişkeni adı gönderirseniz tip olarak object geriye döndürür çünkü arrayler de object türünde kabul edilir. Bir değişkenin array olup olmadığını anlamak için <code>Array.isArray</code> kullanılır, bu geriye <code>true </code>veya <code>false </code>değer döndürür.</p><pre id="833877a8-f648-48fd-82de-bf5524da8874" class="code"><code>function isArray(data: any): boolean {
+  if (data instanceof Array) {
+    return true
+  }
+  return false
+}
+
+const person = {id: 1, name:&quot;kaira&quot;}
+isArray(person); // return false
+const person2 = [12,&quot;kedi&quot;];
+isArray(person2); // return true</code></pre><p id="abbf313b-b704-4f8a-b5e7-5eaeca19a910" class="">Bir fonksiyona parametre olarak gelen bir tip any olmalı. Zaten alacağımız parametrenin tipini belirtmiş isen o zaman bunu tip kontrolü yapmaya gerek yok zaten tipi bellidir.</p><h3 id="50d7922b-6ad1-4feb-887d-4504a466b50a" class="">extends</h3><p id="d61743e7-7b1b-4d58-963b-62bcdee0a938" class="">Bir değeri başka bir değerden türetmek anlamı taşır.</p><pre id="ce204a28-999f-4e4f-a26d-27e1ba35f3a8" class="code"><code>const myArray = [1, 2, &quot;das&quot;];
+
+
+//person fonksiyonumun alacağı parametre myArray değişkenimin tipinden türetildi.
+function person&lt;T extends typeof myArray&gt;(arr: T) {
+  console.log(true)
+}
+
+person([1, 2]); // true
+person(&quot;kedi&quot;);  // error : person fonksiyonu myArray tipinde olabilir.</code></pre><h3 id="5e033220-14b1-4189-95a1-771b1c53d6a2" class="">Template Literal Types</h3><p id="21d6b510-f74b-4d8e-b639-0c50438a6d37" class="">İlgili değişkene belirli özellikler ile değerler almasını sağlayan tipler oluşturmak için kullanılır.</p><pre id="68953c18-30ab-4c3d-993a-a6a008ed1f90" class="code"><code>// set kelimesinde sonra herhangi bir string değer eklenmeli
+const person: `set${string}` = &#x27;setChance&#x27;
+// set &#x27;den sonra herhangi bir number değer eklenmeli
+const person2: `set${number}` = &#x27;set24&#x27;
+// dışarıda tip tanımlayıp iletebiliriz
+type Tperson = `on${number}`;
+const person: Tperson= &#x27;on24&#x27;;
+
+// set &#x27;den sonra baş harfi büyük string almalı
+const person: `set${Capitalize&lt;string&gt;}`= &#x27;setChance&#x27;;
+// set &#x27;den sonra baş harfi küçük string almalı
+const person: `set${Uncapitalize&lt;string&gt;}`= &#x27;setchance&#x27;;
+// set &#x27;den sonra tüm harfleri büyük string almalı
+const person: `set${Uppercase&lt;string&gt;}`= &#x27;setCHANCE&#x27;;
+// set &#x27;den sonra tüm harfleri küçük string almalı
+const person: `set${Lowercase&lt;string&gt;}`= &#x27;setchance&#x27;;</code></pre><pre id="de70308c-9f41-497f-b926-633c7cc7e3e8" class="code"><code>type IParams =  `set${Uppercase&lt;&#x27;DELETE&#x27; | &#x27;UPDATE&#x27; | &#x27;ADD&#x27;&gt;}`;
+
+function personHandler(params : IParams) {
+  switch (params){
+      case &#x27;setDELETE&#x27;:
+          console.log(&quot;Silme işlemi başarılı&quot;);
+          break;
+      case &#x27;setUPDATE&#x27;:
+          console.log(&quot;Güncelleme işlemi başarılı&quot;);
+          break;
+      case &#x27;setADD&#x27;:
+          console.log(&quot;Ekleme işlemi başarılı&quot;);
+          break;
+      default :
+          alert(&quot;İşlem başarısız&quot;);
+     }
+ }
+
+personHandler(&quot;setADD&quot;) // &quot;Ekleme işlemi başarılı&quot;</code></pre></div></article></body></html>
