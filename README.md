@@ -9,7 +9,6 @@
 - Typescript, Javascript'in syntax'ını kullanır buna ek olarakda Tipleri destekler.
 - TypeScript JavaScript'e gelecek olan yeni özellikleri şimdiden destekler. Bu da yeni özelliklerin tarayıcılar (ya da diğer ortamlar) tarafından tamamen desteklenmese bile kullanabileceğiniz anlamına gelir.
 
-![Typescript browser ‘larda çalışmaz, Typescript ile yazılan kod Typescript Compiler ile javascript diline çevrilir (compiler) ve çalıştırılır.](Typescript%20d21116802f7b4b25ac84b8b557b4695d/68747470733a2f2f7777772e747970657363726970747475746f7269616c2e6e65742f77702d636f6e74656e742f75706c6f6164732f323032302f30352f776861742d69732d747970657363726970742d636f6d70696c65722e706e67.png)
 
 Typescript browser ‘larda çalışmaz, Typescript ile yazılan kod Typescript Compiler ile javascript diline çevrilir (compiler) ve çalıştırılır.
 
